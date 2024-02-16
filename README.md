@@ -16,7 +16,7 @@ Usage:
 ```bash
 python3 ytd.py
 ```
-
+![](https://github.com/Vargnaar/ytd/blob/main/example.gif)
 Hey man, that's it 
 
 ---
