@@ -9,20 +9,33 @@
 ```
 ---
 # You Tube Downloader
+
 ### *So simple, it's stupid.*
 
-**Usage**: python3 ytd.py
----
-Hey man, that's it ![768925002149265428](https://github.com/Vargnaar/ytd/assets/16273716/d0c893a8-e18c-47e2-a09b-2723461de26c) 
+Usage:
+```bash
+python3 ytd.py
+```
+
+Hey man, that's it 
 
 ---
+
 ## Latest Features:
-- Download audio only (Lex Friedman is wonderful background noise)
-- Funky new banner (I added one line)
-- Title checking (Are you sure you wanted chainsaw ASMR 4k 24fps recoloured?)
-- Cleanup feature (You already have a copy of How to sell your bathwater online)
-- Secondary cleanup feature (I was lazy and tired and hungry go away)
 
-## Coming soon:
+- Choose between video or just audio (Lex Friedman is wonderful background noise)
+
+- Funky new banner (I added one line)
+
+- Link checking via title (Are you sure you wanted chainsaw ASMR 4k 24fps recoloured?)
+
+- Cleanup feature (You already have a copy of How to sell your bathwater online, do you want it again?)
+
+- The banner is so neat that it needed to be mentioned twice
+
+  
+  ## Coming soon:
+
 - Playlist downloader
+
 - Printed output looking cleaner with highlighting and different colours
