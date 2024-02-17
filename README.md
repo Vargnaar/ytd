@@ -15,11 +15,14 @@
 Usage:
 ```bash
 python3 ytd.py
-```
-![image](https://github.com/Vargnaar/ytd/blob/main/example.gif)
-Hey man, that's it 
 
----
+# Follow the easy to follow but annoyingly formatted prompts!
+
+```
+
+![](https://github.com/Vargnaar/ytd/blob/main/example.gif)
+
+
 
 ## Latest Features:
 
@@ -39,3 +42,8 @@ Hey man, that's it
 - Playlist downloader
 
 - Printed output looking cleaner with highlighting and different colours
+
+- Video renaming
+
+- exit via number 3 when asking for a link to close out
+
