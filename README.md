@@ -20,7 +20,7 @@ python3 ytd.py
 
 ```
 
-<img src="https://github.vom/Vargnaar/ytd/blob/main/exmaple.gif" width="200">
+<img src="https://github.vom/Vargnaar/ytd/blob/main/exmaple.gif" width="200" height="220">
 
 
 ## Latest Features:
