@@ -20,8 +20,7 @@ python3 ytd.py
 
 ```
 
-![](https://github.com/Vargnaar/ytd/blob/main/example.gif | width=500)
-
+<img src="https://github.vom/Vargnaar/ytd/blob/main/exmaple.gif" width="200">
 
 
 ## Latest Features:
