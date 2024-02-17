@@ -1,6 +1,7 @@
 import os
 import shutil
-from pytube import YouTube
+from pytube import YouTube, Playlist
+from urllib.parse import urlparse, parse_qs
 
 def print_banner():
     banner = """
@@ -28,6 +29,17 @@ def get_user_choice(prompt, options):
     choice = input("Enter your choice: ")
     return choice
 
+def file_exists(folder, filename):
+    return os.path.isfile(os.path.join(folder, filename))
+
+def get_unique_filename(folder, filename):
+    base, ext = os.path.splitext(filename)
+    counter = 1
+    while file_exists(folder, filename):
+        filename = f"{base}_{counter}{ext}"
+        counter += 1
+    return filename
+
 def download_video_or_audio(yt, folder, stream):
     print("[+] Downloading")
     stream.download(folder)
@@ -43,6 +55,8 @@ def handle_download(yt, folder, download_option):
     else:
         print("Invalid option. Try again.")
         return
+
+    filename = get_unique_filename(folder, filename)
 
     if filename in os.listdir(folder):
         print("This video has already been downloaded.")
@@ -62,6 +76,32 @@ def download_video():
 
     while True:
         link = input("Enter link: ")
+        parsed_url = urlparse(link)
+        if not all([parsed_url.scheme, parsed_url.netloc, parsed_url.path]):
+            print("Invalid URL. Please enter a valid YouTube link.")
+            continue
+
+        query = parse_qs(parsed_url.query)
+        if 'list' in query:
+            print("This is a playlist link. Do you want to download the entire playlist?")
+            option = get_user_choice("", ["Yes", "No"])
+            if option == '1':
+                pl = Playlist(link)
+                for url in pl.video_urls:
+                    try:
+                        yt = YouTube(url, on_progress_callback=progress_function)
+                        print(f"Video title: {yt.title}")
+                        download_option = get_user_choice("Do you want to download:", ["Full video with audio", "Only audio"])
+                        folder = os.path.join(video_folder if download_option == '1' else audio_folder, pl.title)
+                        if not os.path.exists(folder):
+                            os.makedirs(folder)
+                        handle_download(yt, folder, download_option)
+                    except Exception as e:
+                        print(f"An error occurred while downloading video at {url}: {e}")
+                continue
+            elif option == '2':
+                continue
+
         try:
             yt = YouTube(link, on_progress_callback=progress_function)
             print(f"Video title: {yt.title}")
