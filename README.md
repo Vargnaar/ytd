@@ -10,7 +10,7 @@
 ---
 # You Tube Downloader
 
-### *So simple, it's stupid.*
+### *So stupid, it's simple.*
 
 Usage:
 ```bash
@@ -19,9 +19,6 @@ python3 ytd.py
 # Follow the easy to follow but annoyingly formatted prompts!
 
 ```
-
-<img src="https://github.vom/Vargnaar/ytd/blob/main/exmaple.gif" width="200" height="220">
-
 
 ## Latest Features:
 - Video renaming (It actually doesn't help to hide the second copy of LotR YTP 2010 collection effectively)
@@ -39,7 +36,7 @@ python3 ytd.py
 - The banner is so neat that it needed to be mentioned twice (and is now featured twice!)
 
   
-  ## Coming soon:
+## Coming soon:
 - Quality selection
 
 - Playlist downloader
