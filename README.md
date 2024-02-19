@@ -21,6 +21,8 @@ python3 ytd.py
 ```
 
 ## Latest Features:
+- Quality selection (Works but audio-only downloads show 4 "None" options. They all work as the same default quality)
+
 - Video renaming (It actually doesn't help to hide the second copy of LotR YTP 2010 collection effectively)
 
 - Printed output looking cleaner with highlighting and different colours (Banners just aren't wanky enough, now with bright red!)
@@ -37,8 +39,6 @@ python3 ytd.py
 
   
 ## Coming soon:
-- Quality selection
+- Quality selection - Audio only fix
 
 - Playlist downloader
-
-

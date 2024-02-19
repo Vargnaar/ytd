@@ -61,15 +61,33 @@ def download_video_or_audio(yt, folder, stream, filename=None):
     stream.download(folder)
     print("[+] Download completed.")
 
-def handle_download(yt, folder, download_option, filename=None):
+def get_stream(yt, download_option):
     if download_option == '1':
-        stream = yt.streams.first()
-        filename = f"{yt.title}.mp4" if filename is None else f"{filename}.mp4"
+        # Get all available streams for the video
+        streams = yt.streams.filter(progressive=True)
     elif download_option == '2':
-        stream = yt.streams.filter(only_audio=True).first()
-        filename = f"{yt.title}.mp3" if filename is None else f"{filename}.mp3"
+        streams = yt.streams.filter(only_audio=True)
     else:
         print(f"{Back.BLACK}{Fore.RED}Invalid option, try again.{Style.RESET_ALL}")
+        return None, None
+
+    # Display all available streams and let the user choose
+    print("\nAvailable qualities:")
+    for i, stream in enumerate(streams, 1):
+        print(f"{i}. {stream.resolution}")
+    stream_number = int(input("Enter the number of the quality you want to download: "))
+    chosen_stream = streams[stream_number - 1]
+
+    # Calculate the download size in MB
+    download_size = chosen_stream.filesize / (1024 * 1024)
+    print(f"The download size is {download_size:.2f} MB")
+
+    filename = f"{yt.title}.{chosen_stream.subtype}"
+    return chosen_stream, filename
+
+def handle_download(yt, folder, download_option, filename=None):
+    chosen_stream, filename = get_stream(yt, download_option)
+    if chosen_stream is None:
         return
 
     filename = get_unique_filename(folder, filename)
@@ -80,7 +98,7 @@ def handle_download(yt, folder, download_option, filename=None):
         if download_choice == '2':
             return
 
-    download_video_or_audio(yt, folder, stream, filename)
+    download_video_or_audio(yt, folder, chosen_stream, filename)
 
 def download_video():
     video_folder = "Downloaded Videos"
