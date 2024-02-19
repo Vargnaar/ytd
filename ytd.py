@@ -41,9 +41,9 @@ def get_unique_filename(folder, filename):
     return filename
 
 def download_video_or_audio(yt, folder, stream):
-    print("[+] Downloading")
+    print("\n[+] Downloading")
     stream.download(folder)
-    print("\n[+] Download completed.")
+    print("[+] Download completed.")
 
 def handle_download(yt, folder, download_option):
     if download_option == '1':
@@ -104,10 +104,10 @@ def download_video():
 
         try:
             yt = YouTube(link, on_progress_callback=progress_function)
-            print(f"Video title: {yt.title}")
+            print(f"\nVideo title: {yt.title}")
             option = get_user_choice("Is this the correct video?", ["Yes - Download it", "No - Try again", "Exit"])
             if option == '1':
-                download_option = get_user_choice("Do you want to download:", ["Full video with audio", "Only audio"])
+                download_option = get_user_choice("\nDo you want to download:", ["Full video with audio", "Only audio"])
                 folder = video_folder if download_option == '1' else audio_folder
                 handle_download(yt, folder, download_option)
             elif option == '3':
@@ -118,7 +118,7 @@ def download_video():
 
         option = get_user_choice("\nWhat would you like to do next?", ["Download another video", "Exit"])
         if option == '2':
-            print("[+] Goodbye!\n")
+            print("\n[+] Goodbye!\n")
             break
 
     for file_name in os.listdir():
