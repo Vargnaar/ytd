@@ -2,18 +2,50 @@ import os
 import shutil
 from pytube import YouTube, Playlist
 from urllib.parse import urlparse, parse_qs
+from colorama import Fore, Back, Style
 
-def print_banner():
+# Created: Saturday 17 February 2:32am
+# Banner remade to incorperate colour
+# I was up all night baking burger buns
+
+
+def print_colored_banner():
     banner = """
-░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  
-░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	You Tube Downloader
-░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	I was up making burger buns
- ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	X: @vargnaar
-   ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	W: https://varghalla.neocities.org
-   ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	L: MIT
-   ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓███████▓▒░  	C: Sat 17 Feb 2:32am
-"""
-    print(banner)
+    ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  
+    ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	
+    ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	
+     ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	
+       ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	
+       ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
+       ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓███████▓▒░  
+    """
+
+    for line in banner.split('\n'):
+        for char in line:
+            if char == '█':
+                print(Fore.WHITE + char, end='')
+            else:
+                print(Fore.RED + char, end='')
+            print(Style.RESET_ALL, end='')
+        print()
+
+
+
+print(f"\nTwitter: {Back.LIGHTBLUE_EX}{Fore.WHITE}@Vargnaar{Style.RESET_ALL}")
+print(f"Website: {Back.BLUE}{Fore.WHITE}https://varghalla.neocities.org{Style.RESET_ALL}")
+print(f"Created: {Back.LIGHTBLUE_EX}{Fore.WHITE}Sat Feb 17 2024 | 2:32am{Style.RESET_ALL}")
+
+# def print_banner():
+#     banner = """
+# ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  
+# ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	You Tube Downloader
+# ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	I was up making burger buns
+#  ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	X: @vargnaar
+#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	W: https://varghalla.neocities.org
+#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	L: MIT
+#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓███████▓▒░  	C: Sat 17 Feb 2:32am
+# """
+#     print(banner)
 
 def progress_function(stream, chunk, bytes_remaining):
     current = ((stream.filesize - bytes_remaining)/stream.filesize)
@@ -53,7 +85,7 @@ def handle_download(yt, folder, download_option):
         stream = yt.streams.filter(only_audio=True).first()
         filename = f"{yt.title}.mp3"
     else:
-        print("Invalid option. Try again.")
+        print(f"{Back.BLACK}{Fore.RED}Invalid option, try again.{Style.RESET_ALL}")
         return
 
     filename = get_unique_filename(folder, filename)
@@ -127,5 +159,5 @@ def download_video():
         elif file_name.endswith('.mp3'):
             shutil.move(file_name, audio_folder)
 
-print_banner()
+print_colored_banner()
 download_video()

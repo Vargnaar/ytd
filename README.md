@@ -24,6 +24,7 @@ python3 ytd.py
 
 
 ## Latest Features:
+- Printed output looking cleaner with highlighting and different colours
 
 - Choose between video or just audio (Lex Friedman is wonderful background noise)
 
@@ -39,8 +40,6 @@ python3 ytd.py
   ## Coming soon:
 
 - Playlist downloader
-
-- Printed output looking cleaner with highlighting and different colours
 
 - Video renaming
 
