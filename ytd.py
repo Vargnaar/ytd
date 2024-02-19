@@ -4,11 +4,6 @@ from pytube import YouTube, Playlist
 from urllib.parse import urlparse, parse_qs
 from colorama import Fore, Back, Style
 
-# Created: Saturday 17 February 2:32am
-# Banner remade to incorperate colour
-# I was up all night baking burger buns
-
-
 def print_colored_banner():
     banner = """
     ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  
@@ -29,23 +24,9 @@ def print_colored_banner():
             print(Style.RESET_ALL, end='')
         print()
 
-
-
 print(f"\nTwitter: {Back.LIGHTBLUE_EX}{Fore.WHITE}@Vargnaar{Style.RESET_ALL}")
 print(f"Website: {Back.BLUE}{Fore.WHITE}https://varghalla.neocities.org{Style.RESET_ALL}")
 print(f"Created: {Back.LIGHTBLUE_EX}{Fore.WHITE}Sat Feb 17 2024 | 2:32am{Style.RESET_ALL}")
-
-# def print_banner():
-#     banner = """
-# ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  
-# ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	You Tube Downloader
-# ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	I was up making burger buns
-#  ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	X: @vargnaar
-#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	W: https://varghalla.neocities.org
-#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 	L: MIT
-#    ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓███████▓▒░  	C: Sat 17 Feb 2:32am
-# """
-#     print(banner)
 
 def progress_function(stream, chunk, bytes_remaining):
     current = ((stream.filesize - bytes_remaining)/stream.filesize)
@@ -72,18 +53,21 @@ def get_unique_filename(folder, filename):
         counter += 1
     return filename
 
-def download_video_or_audio(yt, folder, stream):
+def download_video_or_audio(yt, folder, stream, filename=None):
     print("\n[+] Downloading")
+    if filename:
+        # Set the 'outtmpl' option to our filename
+        yt.register_on_complete_callback(lambda stream, file: os.rename(file, os.path.join(folder, filename)))
     stream.download(folder)
     print("[+] Download completed.")
 
-def handle_download(yt, folder, download_option):
+def handle_download(yt, folder, download_option, filename=None):
     if download_option == '1':
         stream = yt.streams.first()
-        filename = f"{yt.title}.mp4"
+        filename = f"{yt.title}.mp4" if filename is None else f"{filename}.mp4"
     elif download_option == '2':
         stream = yt.streams.filter(only_audio=True).first()
-        filename = f"{yt.title}.mp3"
+        filename = f"{yt.title}.mp3" if filename is None else f"{filename}.mp3"
     else:
         print(f"{Back.BLACK}{Fore.RED}Invalid option, try again.{Style.RESET_ALL}")
         return
@@ -96,7 +80,7 @@ def handle_download(yt, folder, download_option):
         if download_choice == '2':
             return
 
-    download_video_or_audio(yt, folder, stream)
+    download_video_or_audio(yt, folder, stream, filename)
 
 def download_video():
     video_folder = "Downloaded Videos"
@@ -137,12 +121,17 @@ def download_video():
         try:
             yt = YouTube(link, on_progress_callback=progress_function)
             print(f"\nVideo title: {yt.title}")
-            option = get_user_choice("Is this the correct video?", ["Yes - Download it", "No - Try again", "Exit"])
+            option = get_user_choice("Is this the correct video?", ["Yes - Download it", "Yes - Download and rename", "No - Try again", "Exit"])
             if option == '1':
                 download_option = get_user_choice("\nDo you want to download:", ["Full video with audio", "Only audio"])
                 folder = video_folder if download_option == '1' else audio_folder
                 handle_download(yt, folder, download_option)
-            elif option == '3':
+            elif option == '2':
+                new_name = input("Enter the new name for the video: ")
+                download_option = get_user_choice("\nDo you want to download:", ["Full video with audio", "Only audio"])
+                folder = video_folder if download_option == '1' else audio_folder
+                handle_download(yt, folder, download_option, new_name)
+            elif option == '4':
                 print("[+] Goodbye!\n")
                 break
         except Exception as e:

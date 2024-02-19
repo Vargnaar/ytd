@@ -24,7 +24,9 @@ python3 ytd.py
 
 
 ## Latest Features:
-- Printed output looking cleaner with highlighting and different colours
+- Video renaming (It actually doesn't help to hide the second copy of LotR YTP 2010 collection effectively)
+
+- Printed output looking cleaner with highlighting and different colours (Banners just aren't wanky enough, now with bright red!)
 
 - Choose between video or just audio (Lex Friedman is wonderful background noise)
 
@@ -34,14 +36,12 @@ python3 ytd.py
 
 - Cleanup feature (You already have a copy of How to sell your bathwater online, do you want it again?)
 
-- The banner is so neat that it needed to be mentioned twice
+- The banner is so neat that it needed to be mentioned twice (and is now featured twice!)
 
   
   ## Coming soon:
+- Quality selection
 
 - Playlist downloader
 
-- Video renaming
-
-- exit via number 3 when asking for a link to close out
 
