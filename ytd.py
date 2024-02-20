@@ -54,12 +54,12 @@ def get_unique_filename(folder, filename):
     return filename
 
 def download_video_or_audio(yt, folder, stream, filename=None):
-    print("\n[+] Downloading")
+    print(f"\n[{Fore.LIGHTYELLOW_EX}+{Style.RESET_ALL}] {Fore.LIGHTYELLOW_EX}Downloading{Style.RESET_ALL}")
     if filename:
         # Set the 'outtmpl' option to our filename
         yt.register_on_complete_callback(lambda stream, file: os.rename(file, os.path.join(folder, filename)))
     stream.download(folder)
-    print("[+] Download completed.")
+    print(f"[{Fore.GREEN}+{Style.RESET_ALL}] {Fore.GREEN}Download completed.{Style.RESET_ALL}")
 
 def get_stream(yt, download_option):
     if download_option == '1':
@@ -75,7 +75,7 @@ def get_stream(yt, download_option):
     print("\nAvailable qualities:")
     for i, stream in enumerate(streams, 1):
         print(f"{i}. {stream.resolution}")
-    stream_number = int(input("Enter the number of the quality you want to download: "))
+    stream_number = int(input("Which version do you want?: "))
     chosen_stream = streams[stream_number - 1]
 
     # Calculate the download size in MB
@@ -93,7 +93,7 @@ def handle_download(yt, folder, download_option, filename=None):
     filename = get_unique_filename(folder, filename)
 
     if filename in os.listdir(folder):
-        print("This video has already been downloaded.")
+        print(f"{Fore.MAGENTA}This video has already been downloaded{Style.RESET_ALL}.")
         download_choice = get_user_choice("What would you like to do?", ["Download anyway", "Try a new video"])
         if download_choice == '2':
             return
@@ -138,7 +138,7 @@ def download_video():
 
         try:
             yt = YouTube(link, on_progress_callback=progress_function)
-            print(f"\nVideo title: {yt.title}")
+            print(f"\nVideo title: {Back.LIGHTGREEN_EX}{yt.title}{Style.RESET_ALL}")
             option = get_user_choice("Is this the correct video?", ["Yes - Download it", "Yes - Download and rename", "No - Try again", "Exit"])
             if option == '1':
                 download_option = get_user_choice("\nDo you want to download:", ["Full video with audio", "Only audio"])
@@ -153,7 +153,7 @@ def download_video():
                 print("[+] Goodbye!\n")
                 break
         except Exception as e:
-            print("[-] An error occurred: ", e)
+            print(f"[{Fore.RED}-{Style.RESET_ALL}] {Fore.RED}An error occurred{Style.RESET_ALL}: ", e)
 
         option = get_user_choice("\nWhat would you like to do next?", ["Download another video", "Exit"])
         if option == '2':

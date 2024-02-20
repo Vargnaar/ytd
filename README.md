@@ -42,3 +42,12 @@ python3 ytd.py
 - Quality selection - Audio only fix
 
 - Playlist downloader
+
+- Threads? (likely not)
+
+## Minor Updates:
+- Fixed some formatting issues
+
+- Added more colour for easier reading
+
+- Verbiage update to conserve... something idk
