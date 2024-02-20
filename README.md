@@ -14,8 +14,10 @@
 
 Usage:
 ```bash
+# Install necessary libraries
+pip3 install -r requirements.txt
+# Run the script
 python3 ytd.py
-
 # Follow the easy to follow but annoyingly formatted prompts!
 
 ```
@@ -46,6 +48,10 @@ python3 ytd.py
 - Threads? (likely not)
 
 ## Minor Updates:
+- Updoot script usage example to reflooct the noo 1 (respectively)
+
+- Added a requirements.txt for you to pip
+
 - Fixed some formatting issues
 
 - Added more colour for easier reading
