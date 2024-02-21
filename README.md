@@ -42,7 +42,7 @@ python3 ytd.py
   
 ## Coming soon:
 - Command line arguments so you can cut to the chase
-!(carbon example)[LINKHERE]
+!(carbon example)[https://github.com/Vargnaar/ytd/blob/clia/carbon-example.png]
 
 - Playlist downloader
 
