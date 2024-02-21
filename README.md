@@ -41,7 +41,8 @@ python3 ytd.py
 
   
 ## Coming soon:
-- Quality selection - Audio only fix
+- Command line arguments so you can cut to the chase
+!(carbon example)[LINKHERE]
 
 - Playlist downloader
 
