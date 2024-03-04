@@ -14,23 +14,16 @@
 #### NOW EVEN SIMPLER!!!
 
 Usage:
-```bash
-# Install necessary libraries
-pip3 install -r requirements.txt
-# Run the script
-python3 ytd.py
-# Follow the easy to follow but annoyingly formatted prompts!
 
-```
 ```bash
 # Install necessary libraries
 pip3 install -r requirements.txt
 # Run the script
 python3 ytdcli.py <URL> <necessary flags>
 ```
-For both versions, the help flag is available:
+For help, use the `-h` flag with no arguments
 ```bash
-python3 <scriptversion> -h
+python3 ytdcli.py -h
 ```
 
 ## Latest Features:
