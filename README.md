@@ -11,6 +11,7 @@
 # You Tube Downloader
 
 ### *So stupid, it's simple.*
+#### NOW EVEN SIMPLER!!!
 
 Usage:
 ```bash
@@ -21,8 +22,20 @@ python3 ytd.py
 # Follow the easy to follow but annoyingly formatted prompts!
 
 ```
+```bash
+# Install necessary libraries
+pip3 install -r requirements.txt
+# Run the script
+python3 ytdcli.py <URL> <necessary flags>
+```
+For both versions, the help flag is available:
+```bash
+python3 <scriptversion> -h
+```
 
 ## Latest Features:
+- Command line arguments so you can cut to the chase (Who has the time?)
+
 - Quality selection (Works but audio-only downloads show 4 "None" options. They all work as the same default quality)
 
 - Video renaming (It actually doesn't help to hide the second copy of LotR YTP 2010 collection effectively)
@@ -41,9 +54,6 @@ python3 ytd.py
 
   
 ## Coming soon:
-- Command line arguments so you can cut to the chase
-![carbon example](https://github.com/Vargnaar/ytd/blob/clia/carbon-example.png)
-
 - Playlist downloader
 
 - Threads? (likely not)
